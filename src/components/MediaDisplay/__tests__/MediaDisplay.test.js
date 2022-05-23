@@ -4,7 +4,7 @@ import { render } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
 import MediaDisplay from '../index'
-import { extendedTheme, gallery } from '../sample'
+import { extendedTheme, mediaDisplayGallery } from '../../MediaSelect/sample'
 
 // Mock Spotlight so it won't throw error
 jest.mock('spotlight.js/src/js/spotlight.js', () => {
@@ -49,7 +49,7 @@ describe('MediaDisplay component should display media gallery correctly', () => 
     test('display default filter and media item', () => {
         const { queryByPlaceholderText } = render(
             <ChakraProvider theme={extendedTheme}>
-                <MediaDisplay data={gallery} />
+                <MediaDisplay data={mediaDisplayGallery} />
             </ChakraProvider>
         )
 
@@ -62,7 +62,7 @@ describe('MediaDisplay component should display media gallery correctly', () => 
         const { getByTestId } = render(
             <ChakraProvider theme={extendedTheme}>
                 <MediaDisplay
-                    data={gallery}
+                    data={mediaDisplayGallery}
                     components={{ Filters: CustomFilters, MediaItem }}
                 />
             </ChakraProvider>

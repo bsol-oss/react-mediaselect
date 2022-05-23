@@ -18,7 +18,7 @@ import {
 } from 'react-icons/ai'
 
 import MediaDisplay from './index'
-import { extendedTheme, gallery } from './sample'
+import { extendedTheme, mediaDisplayGallery } from '../MediaSelect/sample'
 import {
     ImageItemContainer,
     VideoThumbnailContainer,
@@ -127,7 +127,7 @@ const MediaItem = ({ item, popup, actions }) => {
 }
 
 export const DefaultMediaDisplay = () => {
-    const [data, setData] = useState(gallery)
+    const [data, setData] = useState(mediaDisplayGallery)
 
     return (
         <ChakraProvider theme={extendedTheme}>
@@ -136,7 +136,7 @@ export const DefaultMediaDisplay = () => {
                 <div>
                     <select
                         onChange={(e) => {
-                            const newData = gallery.filter((item) =>
+                            const newData = mediaDisplayGallery.filter((item) =>
                                 e.currentTarget.value
                                     ? item.type === e.currentTarget.value
                                     : true
@@ -160,7 +160,7 @@ export const WithCustomMediaItemDimensions = () => (
     <ChakraProvider theme={extendedTheme}>
         <>
             <GlobalStyles />
-            <MediaDisplay data={gallery} width={350} height={180} />
+            <MediaDisplay data={mediaDisplayGallery} width={350} height={180} />
         </>
     </ChakraProvider>
 )
@@ -169,7 +169,7 @@ export const WithCustomContainerHeight = () => (
     <ChakraProvider theme={extendedTheme}>
         <>
             <GlobalStyles />
-            <MediaDisplay data={gallery} containerHeight={100} />
+            <MediaDisplay data={mediaDisplayGallery} containerHeight={100} />
         </>
     </ChakraProvider>
 )
@@ -179,7 +179,7 @@ export const WithCustomMediaItem = () => (
         <>
             <GlobalStyles />
             <MediaDisplay
-                data={gallery}
+                data={mediaDisplayGallery}
                 components={{ MediaItem }}
                 actions={{
                     onSelect: () => {
@@ -196,7 +196,7 @@ export const WithCustomFiltersCustomMediaItem = () => (
         <>
             <GlobalStyles />
             <MediaDisplay
-                data={gallery}
+                data={mediaDisplayGallery}
                 components={{ Filters: CustomFilters, MediaItem }}
             />
         </>
@@ -208,7 +208,7 @@ export const WithSingleSelectable = () => (
         <>
             <GlobalStyles />
             <MediaDisplay
-                data={gallery}
+                data={mediaDisplayGallery}
                 components={{ MediaItem }}
                 selectable={'single'}
                 onSelect={(value) => console.log(value, '@selected-item')}
@@ -222,7 +222,7 @@ export const WithMultiSelectable = () => (
         <>
             <GlobalStyles />
             <MediaDisplay
-                data={gallery}
+                data={mediaDisplayGallery}
                 components={{ MediaItem }}
                 selectable={'multi'}
                 onSelect={(value) => console.log(value, '@selected-items')}

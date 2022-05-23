@@ -101,6 +101,56 @@ export const extendedTheme = extendTheme(
     })
 )
 
+export const mediaDisplayGallery = [
+    {
+        src: 'https://images.unsplash.com/photo-1626972309141-bee9f36a0499',
+        thumbnail:
+            'https://images.unsplash.com/photo-1626972309141-bee9f36a0499',
+        title: 'this is some',
+        description: 'sample image',
+        type: 'image',
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1627241384307-085049264cc1',
+        thumbnail:
+            'https://images.unsplash.com/photo-1627241384307-085049264cc1',
+        title: 'this is',
+        description: 'another image',
+        type: 'image',
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1631804925480-b5827027560b',
+        thumbnail:
+            'https://images.unsplash.com/photo-1631804925480-b5827027560b',
+        title: 'this is yet',
+        description: 'another image',
+        type: 'image',
+    },
+    {
+        src: 'https://samplelib.com/lib/preview/mp4/sample-5s.mp4',
+        thumbnail: 'https://samplelib.com/lib/preview/mp4/sample-5s.mp4',
+        title: 'this is',
+        description: 'a video',
+        type: 'video',
+    },
+    {
+        src: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
+        thumbnail:
+            'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
+        title: 'this is',
+        description: 'another video',
+        type: 'video',
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1583521214690-73421a1829a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80',
+        thumbnail:
+            'https://images.unsplash.com/photo-1583521214690-73421a1829a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80',
+        title: 'this is',
+        description: 'sample document',
+        type: 'doc',
+    },
+]
+
 export const gallery = [
     {
         src: 'https://images.unsplash.com/photo-1626972309141-bee9f36a0499',
