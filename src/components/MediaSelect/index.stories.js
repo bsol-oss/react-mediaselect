@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
-import { ChakraProvider, Form } from '@chakra-ui/react'
-import { Field, Formik } from 'formik'
+import { ChakraProvider } from '@chakra-ui/react'
+import { Field, Formik, Form } from 'formik'
 
 import MediaSelect from './index'
 import { extendedTheme, gallery } from './sample'
@@ -13,7 +13,7 @@ const FormikFormContainer = styled.div`
     }
 `
 
-export const FormikForm = styled(Form)`
+const FormikForm = styled(Form)`
     border: 1px solid #ddd;
     border-radius: 3px;
     margin: 5% auto;
