@@ -24,4 +24,4 @@ Run `yarn storybook` to see the storybook components locally.
 
 Or,
 
-Check at **CodeSandbox**: https://codesandbox.io/s/bsol-oss-react-mediaselect-example-fh9prl
+Check at **CodeSandbox**: https://codesandbox.io/s/bsol-oss-react-mediaselect-example-jki0e9
