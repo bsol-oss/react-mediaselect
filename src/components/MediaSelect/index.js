@@ -56,10 +56,20 @@ const MediaSelect = ({
 
     // Add "selected" property to each gallery item
     useEffect(() => {
+        // If the gallery items have "id" property,
+        // mark items as selected by comparing their ids
+        // else comparing by their references
+        const hasId = gallery.some((gal) => gal.hasOwnProperty('id'))
+        const ids = multiple ? value?.map((g) => g.id) || [] : [value?.id]
+
         gallery.forEach((gal) => {
-            gal.selected = multiple
-                ? value.indexOf(gal) > -1
-                : [value].indexOf(gal) > -1
+            if (hasId) {
+                gal.selected = ids.includes(gal.id)
+            } else {
+                gal.selected = multiple
+                    ? value.includes(gal)
+                    : [value].includes(gal)
+            }
         })
     }, [gallery])
 
