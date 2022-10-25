@@ -35,6 +35,7 @@ const MediaSelect = ({
     selectButtonLabel = 'Select',
     closeButtonLabel = 'Close',
     isDisabled = false,
+    modalSize = '3xl', // can be one of ['xs', 'sm', 'md', 'lg', 'xl', 'full']
 }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -127,7 +128,7 @@ const MediaSelect = ({
                 </Button>
             )}
             <Thumbnails items={value} />
-            <Modal size="3xl" isOpen={isOpen} onClose={cancel}>
+            <Modal size={modalSize} isOpen={isOpen} onClose={cancel}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalBody>
