@@ -103,6 +103,7 @@ export const extendedTheme = extendTheme(
 
 export const mediaDisplayGallery = [
     {
+        id: 1,
         src: 'https://images.unsplash.com/photo-1626972309141-bee9f36a0499',
         thumbnail:
             'https://images.unsplash.com/photo-1626972309141-bee9f36a0499',
@@ -111,6 +112,7 @@ export const mediaDisplayGallery = [
         type: 'image',
     },
     {
+        id: 2,
         src: 'https://images.unsplash.com/photo-1627241384307-085049264cc1',
         thumbnail:
             'https://images.unsplash.com/photo-1627241384307-085049264cc1',
@@ -119,6 +121,7 @@ export const mediaDisplayGallery = [
         type: 'image',
     },
     {
+        id: 3,
         src: 'https://images.unsplash.com/photo-1631804925480-b5827027560b',
         thumbnail:
             'https://images.unsplash.com/photo-1631804925480-b5827027560b',
@@ -127,6 +130,7 @@ export const mediaDisplayGallery = [
         type: 'image',
     },
     {
+        id: 4,
         src: 'https://samplelib.com/lib/preview/mp4/sample-5s.mp4',
         thumbnail: 'https://samplelib.com/lib/preview/mp4/sample-5s.mp4',
         title: 'this is',
@@ -134,6 +138,7 @@ export const mediaDisplayGallery = [
         type: 'video',
     },
     {
+        id: 5,
         src: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
         thumbnail:
             'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
@@ -142,6 +147,7 @@ export const mediaDisplayGallery = [
         type: 'video',
     },
     {
+        id: 6,
         src: 'https://images.unsplash.com/photo-1583521214690-73421a1829a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80',
         thumbnail:
             'https://images.unsplash.com/photo-1583521214690-73421a1829a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80',
@@ -153,6 +159,7 @@ export const mediaDisplayGallery = [
 
 export const gallery = [
     {
+        id: 1,
         src: 'https://images.unsplash.com/photo-1626972309141-bee9f36a0499',
         thumbnail:
             'https://images.unsplash.com/photo-1626972309141-bee9f36a0499',
@@ -161,6 +168,7 @@ export const gallery = [
         fileName: 'unplash',
     },
     {
+        id: 2,
         src: 'https://images.unsplash.com/photo-1627241384307-085049264cc1',
         thumbnail:
             'https://images.unsplash.com/photo-1627241384307-085049264cc1',
@@ -169,6 +177,7 @@ export const gallery = [
         fileName: 'unplash',
     },
     {
+        id: 3,
         src: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
         thumbnail:
             'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
