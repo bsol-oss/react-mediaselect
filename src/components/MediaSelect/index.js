@@ -16,7 +16,7 @@ import DefaultThumbnails from './Thumbnails'
 import MediaDisplay from '../MediaDisplay'
 
 const MediaSelect = ({
-    value: nonFormikValue,
+    value: nonFormikValue, // selected media item(s)
     field: { name: fieldName, value: formikValue } = {
         name: null,
         value: null,
@@ -49,69 +49,58 @@ const MediaSelect = ({
             setFieldValue(fieldName, v)
         })
 
-    // Internal value of this component
-    const [valueInternal, setValueInternal] = useState(
-        multiple ? [] : undefined
-    )
+    // Internal gallery & value (selected items) of this component
+    const [valueInternal, setValueInternal] = useState([])
+    const [galleryInternal, setGalleryInternal] = useState([])
 
-    // Add "selected" property to each gallery item
+    // Recheck selected items when the modal is open
     useEffect(() => {
-        // If the gallery items have "id" property,
-        // mark items as selected by comparing their ids
-        // else comparing by their references
-        const hasId = gallery.some((gal) => gal.hasOwnProperty('id'))
-        const ids = multiple ? value?.map((g) => g.id) || [] : [value?.id]
+        if (isOpen) {
+            setValueInternal(
+                getInitialValue(nonFormikValue, formikValue, multiple)
+            )
+            setGalleryInternal(
+                getInitialGallery(
+                    gallery,
+                    nonFormikValue,
+                    formikValue,
+                    multiple
+                )
+            )
+        }
+    }, [isOpen])
 
-        gallery.forEach((gal) => {
-            if (hasId) {
-                gal.selected = ids.includes(gal.id)
-            } else {
-                gal.selected = multiple
-                    ? value.includes(gal)
-                    : [value].includes(gal)
-            }
-        })
-    }, [gallery])
-
-    // Set component's internal state value based on the provided "value" property's value
-    useEffect(() => {
-        setValueInternal(value)
-    }, [value])
-
-    // Media item's on-click handler
+    // Select media item
     const selectMedia = (media) => {
         if (multiple) {
             if (media.selected) {
                 media.selected = false
-                setValueInternal((pre) => pre.filter((item) => item.selected))
+                setValueInternal((pre) =>
+                    pre.filter((item) => item.id !== media.id)
+                )
             } else {
                 media.selected = true
-                setValueInternal((pre) => [...pre, media])
+                setValueInternal((pre) => {
+                    if (pre.some((i) => i.id === media.id)) return pre
+                    else return [...pre, media]
+                })
             }
         } else {
-            updateValue(getSelectedSingleMedia(valueInternal, media))
+            const newSelectedItem = getSelectedSingleMedia(valueInternal, media)
 
+            setValueInternal(newSelectedItem)
+            updateValue(newSelectedItem)
             onClose()
         }
     }
 
-    // Cancel button on click
+    // Cancel button click handler
     const cancel = () => {
-        // Un-select items in the modal
-        if (valueInternal && multiple) {
-            valueInternal.forEach((val) => {
-                val.selected = false
-            })
-
-            value.forEach((val) => {
-                val.selected = true
-            })
-        } else if (valueInternal) {
-            valueInternal.selected = [value].indexOf(valueInternal) >= 0
-        }
-
-        // Re-choose the currently selected items
-        setValueInternal(value)
+        // Re-select the currently selected items
+        setValueInternal(getInitialValue(nonFormikValue, formikValue, multiple))
+        setGalleryInternal(
+            getInitialGallery(gallery, nonFormikValue, formikValue, multiple)
+        )
 
         onClose()
     }
@@ -143,7 +132,7 @@ const MediaSelect = ({
                 <ModalContent>
                     <ModalBody>
                         <MediaDisplay
-                            data={gallery}
+                            data={galleryInternal}
                             width={itemWidth}
                             height={itemHeight}
                             components={{ MediaItem }}
@@ -170,19 +159,50 @@ const MediaSelect = ({
     )
 }
 
+function getInitialValue(nonFormikValue, formikValue, multiple) {
+    let value = nonFormikValue || formikValue
+    if (multiple) {
+        value = !value ? [] : !Array.isArray(value) ? [value] : value
+    }
+
+    return value
+}
+
+function getInitialGallery(gallery, nonFormikValue, formikValue, multiple) {
+    const selectedItems = getInitialValue(nonFormikValue, formikValue, multiple)
+
+    // If the gallery items have "id" property,
+    // mark items as selected by comparing their ids
+    // else comparing by their references
+    const itemsHasId = hasId(gallery)
+    const ids = multiple
+        ? selectedItems?.map((g) => g.id) || []
+        : [selectedItems?.id]
+
+    return gallery.length
+        ? gallery.slice().map((gal) => ({
+              ...gal,
+              selected: itemsHasId
+                  ? ids.includes(gal.id)
+                  : multiple
+                  ? selectedItems.includes(gal)
+                  : [selectedItems].includes(gal),
+          }))
+        : []
+}
+
+function hasId(items) {
+    return items.some((item) => item.hasOwnProperty('id'))
+}
+
 // Determine the media item to be selected
 function getSelectedSingleMedia(pre, newVal) {
-    if (pre && pre.selected === newVal.selected) {
+    if (pre && pre.id === newVal.id) {
         newVal.selected = !newVal.selected
 
-        if (newVal.selected) return newVal
-        return null
-    } else if (pre) {
-        pre.selected = false
-        newVal.selected = true
-
-        return newVal
+        return newVal.selected ? newVal : null
     } else {
+        if (pre) pre.selected = false
         newVal.selected = true
 
         return newVal
