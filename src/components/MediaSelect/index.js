@@ -26,6 +26,7 @@ const MediaSelect = ({
     gallery = [],
     itemWidth = 180,
     itemHeight = 180,
+    containerHeight,
     onSelect,
     container = DefaultContainer,
     thumbnails = DefaultThumbnails,
@@ -136,6 +137,7 @@ const MediaSelect = ({
                             data={galleryInternal}
                             width={itemWidth}
                             height={itemHeight}
+                            containerHeight={containerHeight}
                             components={{ MediaItem }}
                             onSelect={selectMedia}
                         />
